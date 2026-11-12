@@ -3,7 +3,7 @@ Parfait, on passe tout en JS pur. Plus simple, plus rapide.
 Voici l'architecture exacte des fichiers à créer, vide pour l'instant. Tu crées ça et après on code dedans.
 / (racine)
 ├── package.json
-├── .env (DB_HOST, DB_USER, DB_PASS, JWT_SECRET)
+├── .env (DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME, JWT_SECRET)
 │
 ├── /lib/odoo-core
 │   ├── db.js                 // pool MySQL

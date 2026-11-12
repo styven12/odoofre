@@ -4,7 +4,7 @@ import { pool } from '../../../lib/odoo-core/db.js';
 export const runtime = 'nodejs';
 
 function isLocalRequest(req) {
-  const host = new URL(req.url).hostname.toLowerCase();
+  const host = new URL(req.url).name.toLowerCase();
   return ['localhost', '127.0.0.1', '::1'].includes(host);
 }
 
