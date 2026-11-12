@@ -1,0 +1,54 @@
+Parfait, on passe tout en JS pur. Plus simple, plus rapide.
+
+Voici l'architecture exacte des fichiers à créer, vide pour l'instant. Tu crées ça et après on code dedans.
+/ (racine)
+├── package.json
+├── .env (DB_HOST, DB_USER, DB_PASS, JWT_SECRET)
+│
+├── /lib/odoo-core
+│   ├── db.js                 // pool MySQL
+│   ├── model.js              // BaseModel + Model()
+│   ├── fields.js             // fields.String, Number, Boolean, Relation
+│   ├── registry.js           // Registry Map
+│   ├── schema-builder.js     // Génère CREATE TABLE
+│   └── security.js           // can() + middleware company_id
+│
+├── /models
+│   ├── index.js              // fichier qui importe TOUS les modèles pour les enregistrer
+│   ├── /core
+│   │   ├── res.company.js
+│   │   ├── res.users.js
+│   │   ├── res.groups.js
+│   │   ├── ir.model.access.js
+│   │   ├── res.partner.js
+│   │   ├── product.js        // template + product + category en 1 fichier pour commencer
+│   │   ├── res.currency.js
+│   │   └── uom.js
+│   ├── /sales
+│   │   ├── sale.order.js
+│   │   └── crm.lead.js
+│   ├── /accounting
+│   │   └── account.move.js   // LE fichier le plus important (facture + écriture)
+│   ├── /stock
+│   │   └── stock.picking.js
+│   ├── /hr
+│   │   └── hr.employee.js
+│   └── /mrp
+│       └── mrp.production.js
+│
+├── /app (Next.js App Router)
+│   ├── layout.js
+│   ├── page.js               // landing ou redirect /admin
+│   ├── /login
+│   │   └── page.js
+│   ├── /admin
+│   │   └── /[model]
+│   │       └── page.js       // 1 page pour afficher N'IMPORTE quel modèle
+│   └── /api
+│       ├── /auth/login/route.js
+│       ├── /model/[model]/route.js  // GET=search, POST=create, PUT=write
+│       └── /init-db/route.js        // route pour lancer schema-builder.js une fois
+│
+└── /components
+    └── OdooView.jsx          // ListView + FormView générique
+*Ordre de création :*
